@@ -100,6 +100,8 @@ git stash pop
 git stash save "my_stash1"
 git stash pop stash@{n}
 
+
+
 Branching Strategies:
 Centralized Workflow - The basic git starter-pack strategy...everyone works off the master branch and before features get added developers need to fetch and rebase changes.
 Feature Branch Workflow - The don't screw up master strategy. All feature development should take place in a dedicated branch instead of the master branch. developers create a new branch every time they start work on a new feature.
