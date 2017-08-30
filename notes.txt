@@ -1,0 +1,87 @@
+Start a feature branch
+i. git branch <new_branch>
+ii. git checkout <new_branch>
+or the shortcut
+git checkout -b <new_branch>
+
+Develop the feature
+i. def do_some_work
+ ...
+end
+
+
+Adding changes
+a. Commit process
+i. Selectively add related changes into separate
+commits
+ii. git add -i
+i. Interactive staging allows you group commits into
+related edits easily.
+ii. Split up files into 'hunks' and stage them
+separately.
+iii. git commit -m “Added <some feature
+enhancement>”
+
+
+Unhappy with your commits?
+a. Compare changes
+i. git diff HEAD changes since last commit
+ii. git diff HEAD^ or HEAD~1 parent of last commit
+iii. git diff HEAD^^ or HEAD~2 grandparent commit
+b. git reset is git's ctrt+z
+i. git reset HEAD unstage all files
+ii. git reset HEAD <file> unstage a file
+iii. git reset --soft HEAD^
+remove a commit and keep the changes
+iv. git reset --hard HEAD^
+remove commit(s) and trash changes
+
+
+Undo your undo
+i. Didn’t mean to reset that commit?
+That’s Ok! Git doesn’t delete it.
+ii. git reflog
+shows all of your history including resets
+iii. git log --walk-reflog
+more verbose reflog
+iv. git cherry-pick <sha>
+Copies a single commit into the current branch.
+It works for any commit including commits that have
+been reset.
+
+
+Interactive Rebase
+i. What does it do?
+1. Reorder reword, edit, delete, or combine commits
+ii. First, find the commit you want to start from
+1. git log --oneline
+or
+git reflog
+iii. Run the rebase
+1. git rebase -i <sha>
+or (respectively)
+git rebase -i HEAD@{3}
+Details on Interactive Rebase
+i. What can you do?
+1. pick - chooses a commit
+2. reword - rename a commit
+3. edit - lets you edit a commit
+4. squash - use the commit but meld into previous
+commit
+5. fixup - like “squash” but discards this commit’s log
+message
+6. exec - run command (the rest of the line) using shell
+7. Commits can be reordered by moving up/down
+8. Commits can also be deleted by removing a line
+
+
+Integrate upstream
+a. Integrate changes your coworkers made into
+your <feature_branch>
+i. git checkout master ->
+ii. git fetch upstream -> Fetch is similar to pull, except it won’t do any merging
+iii. git pull upstream master -> Attempts to merge the remote to the local automatically
+iv. git checkout <feature_branch>
+v. git rebase master
+
+more stuff to talk about
