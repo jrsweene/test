@@ -1,3 +1,20 @@
-Changes.
-1
-2
+
+def run_certs():
+
+    print "Hi"
+    import os
+    import boto3
+    from lib.registryhandler import Registry
+    from lib.certbothandler import Certbot
+    from lib.awsHelper import AWS
+    cb = Certbot()
+    r = Registry()
+    aws = AWS()
+    r.generate_registry("bt","POST")
+    r.clean_up_registry("bt-registry.json")
+    cb.request_certs("bt-registry.json",cert_cmd="request")
+    aws.push_certs_to_s3("certs/")
+    r.clean_up_registry("bt-registry.json")
+    s3.meta.client.upload_file('data/bt-registry.json',os.environ["BUCKET"],"cert-registries/bt-registry.json")
+
+run_certs()
